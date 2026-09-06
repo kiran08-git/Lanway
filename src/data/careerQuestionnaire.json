@@ -1,0 +1,1562 @@
+{
+  "meta": {
+    "title": "AI Career Guidance Questionnaire",
+    "version": "1.0",
+    "num_questions": 30,
+    "estimated_time_minutes": "5-8",
+    "frameworks": [
+      "Holland RIASEC (Realistic, Investigative, Artistic, Social, Enterprising, Conventional) - primary structure",
+      "O*NET Interest Profiler / Career Values Inventory - scenario-based item style and work-values items",
+      "Schein Career Anchors - motivation/values dimension items"
+    ]
+  },
+  "categories": {
+    "SW": "Software / IT",
+    "AI": "AI & Data Science",
+    "CY": "Cybersecurity",
+    "UX": "UI/UX & Design",
+    "EE": "Electronics / Engineering",
+    "BM": "Business & Management",
+    "FIN": "Finance",
+    "MKT": "Marketing",
+    "HC": "Healthcare",
+    "EDU": "Education",
+    "RES": "Research",
+    "LAW": "Law",
+    "MED": "Media / Content / Creative",
+    "GOV": "Government / Public Service"
+  },
+  "max_scores_per_category": {
+    "SW": 56,
+    "AI": 43,
+    "CY": 30,
+    "UX": 45,
+    "EE": 28,
+    "BM": 51,
+    "FIN": 39,
+    "MKT": 23,
+    "HC": 48,
+    "EDU": 38,
+    "RES": 34,
+    "LAW": 38,
+    "MED": 47,
+    "GOV": 35
+  },
+  "questions": [
+    {
+      "id": 1,
+      "dimension": "Interests",
+      "text": "Which of these would you most enjoy spending a free weekend on?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Tinkering with a gadget or fixing electronics/hardware",
+          "indicates": "Hands-on technical curiosity",
+          "weights": {
+            "EE": 3,
+            "SW": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "Writing a short story, making a video, or designing a poster",
+          "indicates": "Creative expression drive",
+          "weights": {
+            "MED": 3,
+            "UX": 2
+          }
+        },
+        {
+          "label": "C",
+          "text": "Reading about a new scientific discovery or how something works",
+          "indicates": "Intellectual/investigative curiosity",
+          "weights": {
+            "RES": 3,
+            "AI": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "Organizing an event or running a small fundraiser",
+          "indicates": "Organizing / leading people",
+          "weights": {
+            "BM": 2,
+            "GOV": 2,
+            "MKT": 1
+          }
+        },
+        {
+          "label": "E",
+          "text": "Helping a friend study or explaining a topic to a younger sibling",
+          "indicates": "Teaching / nurturing instinct",
+          "weights": {
+            "EDU": 3,
+            "HC": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "dimension": "Interests",
+      "text": "Which documentary would you pick to watch tonight?",
+      "options": [
+        {
+          "label": "A",
+          "text": "How hackers break into systems and how companies defend against them",
+          "indicates": "Security/defense mindset",
+          "weights": {
+            "CY": 3
+          }
+        },
+        {
+          "label": "B",
+          "text": "How AI models like ChatGPT are built and trained",
+          "indicates": "Technical/analytical fascination with AI",
+          "weights": {
+            "AI": 3,
+            "SW": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "How successful startups scaled their business",
+          "indicates": "Business growth interest",
+          "weights": {
+            "BM": 3,
+            "FIN": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "How courts decide landmark cases",
+          "indicates": "Interest in argument, precedent, justice",
+          "weights": {
+            "LAW": 3,
+            "GOV": 1
+          }
+        },
+        {
+          "label": "E",
+          "text": "How diseases are diagnosed and treated",
+          "indicates": "Interest in human biology/care",
+          "weights": {
+            "HC": 3,
+            "RES": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "dimension": "Interests",
+      "text": "Which subject do you pay attention to even outside exams?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mathematics / Statistics",
+          "indicates": "Quantitative reasoning interest",
+          "weights": {
+            "AI": 2,
+            "FIN": 2,
+            "RES": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "Physics / Electronics",
+          "indicates": "Applied-science interest",
+          "weights": {
+            "EE": 3
+          }
+        },
+        {
+          "label": "C",
+          "text": "Biology",
+          "indicates": "Life-science interest",
+          "weights": {
+            "HC": 3,
+            "RES": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "Economics / Commerce",
+          "indicates": "Systems-of-money interest",
+          "weights": {
+            "FIN": 2,
+            "BM": 2
+          }
+        },
+        {
+          "label": "E",
+          "text": "Civics / Political Science / History",
+          "indicates": "Interest in society and governance",
+          "weights": {
+            "LAW": 2,
+            "GOV": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "dimension": "Interests",
+      "text": "When browsing online for fun, you gravitate toward:",
+      "options": [
+        {
+          "label": "A",
+          "text": "Coding tutorials, app demos, tech reviews",
+          "indicates": "Builder mindset",
+          "weights": {
+            "SW": 3,
+            "AI": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "Design portfolios, art, photography",
+          "indicates": "Aesthetic sensitivity",
+          "weights": {
+            "UX": 3,
+            "MED": 2
+          }
+        },
+        {
+          "label": "C",
+          "text": "News about markets, business or startups",
+          "indicates": "Commercial curiosity",
+          "weights": {
+            "FIN": 2,
+            "BM": 2
+          }
+        },
+        {
+          "label": "D",
+          "text": "True-crime or cyber-breach stories",
+          "indicates": "Investigative/protective instinct",
+          "weights": {
+            "CY": 3,
+            "LAW": 1
+          }
+        },
+        {
+          "label": "E",
+          "text": "Motivational or teaching content",
+          "indicates": "Guiding others",
+          "weights": {
+            "EDU": 2,
+            "GOV": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "dimension": "Interests",
+      "text": "Which hypothetical school club would you most want to join?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Robotics / electronics club",
+          "indicates": "Hands-on engineering interest",
+          "weights": {
+            "EE": 3,
+            "SW": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "Debate and Model UN",
+          "indicates": "Argument and advocacy interest",
+          "weights": {
+            "LAW": 3,
+            "GOV": 2
+          }
+        },
+        {
+          "label": "C",
+          "text": "School magazine / content creation",
+          "indicates": "Storytelling interest",
+          "weights": {
+            "MED": 3
+          }
+        },
+        {
+          "label": "D",
+          "text": "Entrepreneurship cell",
+          "indicates": "Venture-building interest",
+          "weights": {
+            "BM": 3,
+            "MKT": 1
+          }
+        },
+        {
+          "label": "E",
+          "text": "Community service / NSS",
+          "indicates": "Service orientation",
+          "weights": {
+            "GOV": 2,
+            "HC": 1,
+            "EDU": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "dimension": "Interests",
+      "text": "Given a free choice of elective project, which would excite you most?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Build a small app or website",
+          "indicates": "Software builder",
+          "weights": {
+            "SW": 3
+          }
+        },
+        {
+          "label": "B",
+          "text": "Analyze a dataset and find patterns",
+          "indicates": "Data/analytical thinker",
+          "weights": {
+            "AI": 3,
+            "RES": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "Design a poster, logo or brand identity",
+          "indicates": "Visual/creative thinker",
+          "weights": {
+            "UX": 2,
+            "MED": 2,
+            "MKT": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "Research and write a report on a social issue",
+          "indicates": "Investigative/civic thinker",
+          "weights": {
+            "RES": 2,
+            "GOV": 1,
+            "LAW": 1
+          }
+        },
+        {
+          "label": "E",
+          "text": "Plan a mock business and pitch it",
+          "indicates": "Entrepreneurial thinker",
+          "weights": {
+            "BM": 3,
+            "FIN": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "dimension": "Strengths",
+      "text": "People who know you well would say you are best at:",
+      "options": [
+        {
+          "label": "A",
+          "text": "Fixing or troubleshooting things (devices, gadgets, code)",
+          "indicates": "Diagnostic/technical strength",
+          "weights": {
+            "SW": 2,
+            "EE": 2,
+            "CY": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "Explaining complicated things simply",
+          "indicates": "Communication/teaching strength",
+          "weights": {
+            "EDU": 3,
+            "MED": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "Noticing small errors others miss",
+          "indicates": "Precision/attention to detail",
+          "weights": {
+            "CY": 2,
+            "FIN": 1,
+            "LAW": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "Coming up with creative ideas",
+          "indicates": "Ideation strength",
+          "weights": {
+            "MED": 2,
+            "UX": 2,
+            "MKT": 1
+          }
+        },
+        {
+          "label": "E",
+          "text": "Convincing people or negotiating",
+          "indicates": "Persuasion strength",
+          "weights": {
+            "BM": 2,
+            "MKT": 2,
+            "LAW": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "dimension": "Strengths",
+      "text": "In group projects, you naturally end up:",
+      "options": [
+        {
+          "label": "A",
+          "text": "Handling the technical/build part",
+          "indicates": "Technical execution role",
+          "weights": {
+            "SW": 3,
+            "EE": 2
+          }
+        },
+        {
+          "label": "B",
+          "text": "Organizing tasks, deadlines and people",
+          "indicates": "Coordination/leadership role",
+          "weights": {
+            "BM": 3,
+            "GOV": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "Designing how the final output looks or presents",
+          "indicates": "Design/presentation role",
+          "weights": {
+            "UX": 3,
+            "MED": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "Double-checking numbers, data or budgets",
+          "indicates": "Analytical/accuracy role",
+          "weights": {
+            "FIN": 3,
+            "AI": 1
+          }
+        },
+        {
+          "label": "E",
+          "text": "Researching background information",
+          "indicates": "Research role",
+          "weights": {
+            "RES": 3,
+            "LAW": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "dimension": "Strengths",
+      "text": "Which of these do you pick up fastest?",
+      "options": [
+        {
+          "label": "A",
+          "text": "New coding languages or tools",
+          "indicates": "Fast technical learner",
+          "weights": {
+            "SW": 3
+          }
+        },
+        {
+          "label": "B",
+          "text": "New gadgets or hardware setups",
+          "indicates": "Fast hands-on learner",
+          "weights": {
+            "EE": 3,
+            "CY": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "New design or editing software",
+          "indicates": "Fast visual-tool learner",
+          "weights": {
+            "UX": 2,
+            "MED": 2
+          }
+        },
+        {
+          "label": "D",
+          "text": "New financial or accounting concepts",
+          "indicates": "Fast quantitative learner",
+          "weights": {
+            "FIN": 3
+          }
+        },
+        {
+          "label": "E",
+          "text": "New people's names, stories and needs",
+          "indicates": "Fast interpersonal learner",
+          "weights": {
+            "HC": 2,
+            "EDU": 2,
+            "GOV": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "dimension": "Strengths",
+      "text": "When something breaks (a device, plan, or system), your instinct is to:",
+      "options": [
+        {
+          "label": "A",
+          "text": "Take it apart / debug step-by-step to find the root cause",
+          "indicates": "Systematic technical troubleshooting",
+          "weights": {
+            "SW": 2,
+            "CY": 2,
+            "EE": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "Look for patterns in the data or logs before deciding",
+          "indicates": "Data-driven diagnosis",
+          "weights": {
+            "AI": 3,
+            "RES": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "Rally people to fix it together",
+          "indicates": "People-mobilizing instinct",
+          "weights": {
+            "BM": 2,
+            "GOV": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "Find a workaround that still delivers results",
+          "indicates": "Pragmatic/resourceful instinct",
+          "weights": {
+            "MKT": 1,
+            "BM": 1,
+            "MED": 1
+          }
+        },
+        {
+          "label": "E",
+          "text": "Calmly explain what went wrong to whoever is affected",
+          "indicates": "Caring/communicative instinct",
+          "weights": {
+            "HC": 2,
+            "EDU": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "dimension": "Strengths",
+      "text": "A skill you'd love to get even better at is:",
+      "options": [
+        {
+          "label": "A",
+          "text": "Programming / building software",
+          "indicates": "Software-building drive",
+          "weights": {
+            "SW": 3
+          }
+        },
+        {
+          "label": "B",
+          "text": "Data analysis / statistics",
+          "indicates": "Analytical drive",
+          "weights": {
+            "AI": 3,
+            "FIN": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "Persuasive speaking or writing",
+          "indicates": "Advocacy/marketing drive",
+          "weights": {
+            "MKT": 2,
+            "LAW": 2,
+            "MED": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "Diagnosing and helping people with health issues",
+          "indicates": "Care-oriented drive",
+          "weights": {
+            "HC": 3
+          }
+        },
+        {
+          "label": "E",
+          "text": "Designing or visual storytelling",
+          "indicates": "Design/creative drive",
+          "weights": {
+            "UX": 2,
+            "MED": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "dimension": "Work Style",
+      "text": "Which best describes how you prefer to work?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Alone or in a small team, deep in a technical problem",
+          "indicates": "Independent technical focus",
+          "weights": {
+            "SW": 2,
+            "AI": 2,
+            "CY": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "In a lively team, talking through ideas constantly",
+          "indicates": "Collaborative/expressive style",
+          "weights": {
+            "BM": 2,
+            "MKT": 2,
+            "MED": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "One-on-one, helping someone directly",
+          "indicates": "Direct-care style",
+          "weights": {
+            "HC": 2,
+            "EDU": 2
+          }
+        },
+        {
+          "label": "D",
+          "text": "Independently, researching thoroughly before acting",
+          "indicates": "Reflective/research style",
+          "weights": {
+            "RES": 3,
+            "LAW": 1
+          }
+        },
+        {
+          "label": "E",
+          "text": "With clear structure, rules and defined processes",
+          "indicates": "Structured/procedural style",
+          "weights": {
+            "GOV": 2,
+            "FIN": 2,
+            "LAW": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "dimension": "Work Style",
+      "text": "When starting a new task, you prefer:",
+      "options": [
+        {
+          "label": "A",
+          "text": "A clear rulebook or process to follow",
+          "indicates": "Preference for structure",
+          "weights": {
+            "FIN": 2,
+            "GOV": 2,
+            "LAW": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "Freedom to experiment and figure it out your own way",
+          "indicates": "Preference for autonomy",
+          "weights": {
+            "MED": 2,
+            "UX": 2,
+            "SW": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "A logical framework you can test and refine",
+          "indicates": "Preference for iterative logic",
+          "weights": {
+            "AI": 2,
+            "RES": 2,
+            "SW": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "A team discussion to divide roles first",
+          "indicates": "Preference for collaboration",
+          "weights": {
+            "BM": 2,
+            "GOV": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "dimension": "Work Style",
+      "text": "Under pressure or deadlines, you tend to:",
+      "options": [
+        {
+          "label": "A",
+          "text": "Get systematic — make lists, prioritize, execute",
+          "indicates": "Organized coping style",
+          "weights": {
+            "BM": 2,
+            "FIN": 2,
+            "GOV": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "Zoom into the technical problem and grind until it's solved",
+          "indicates": "Focused technical coping style",
+          "weights": {
+            "SW": 2,
+            "EE": 2,
+            "CY": 2
+          }
+        },
+        {
+          "label": "C",
+          "text": "Stay calm and reassure/support the people around you",
+          "indicates": "Calm, people-first coping style",
+          "weights": {
+            "HC": 3,
+            "EDU": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "Get creative — find an unconventional way through",
+          "indicates": "Improvisational coping style",
+          "weights": {
+            "MED": 2,
+            "MKT": 2,
+            "UX": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "dimension": "Work Style",
+      "text": "Which statement fits you best?",
+      "options": [
+        {
+          "label": "A",
+          "text": "I like knowing exactly how things work under the hood.",
+          "indicates": "Mechanistic/technical curiosity",
+          "weights": {
+            "SW": 2,
+            "EE": 2,
+            "AI": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "I like understanding why people behave the way they do.",
+          "indicates": "People-insight curiosity",
+          "weights": {
+            "MKT": 2,
+            "GOV": 1,
+            "LAW": 1,
+            "HC": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "I like making things look and feel good.",
+          "indicates": "Aesthetic drive",
+          "weights": {
+            "UX": 3,
+            "MED": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "I like winning arguments with solid logic.",
+          "indicates": "Advocacy/logic drive",
+          "weights": {
+            "LAW": 3,
+            "BM": 1
+          }
+        },
+        {
+          "label": "E",
+          "text": "I like discovering new facts nobody has told me yet.",
+          "indicates": "Discovery drive",
+          "weights": {
+            "RES": 3,
+            "AI": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "dimension": "Work Style",
+      "text": "When you disagree with someone, you usually:",
+      "options": [
+        {
+          "label": "A",
+          "text": "Present data or evidence to make your case",
+          "indicates": "Evidence-based persuasion",
+          "weights": {
+            "AI": 2,
+            "RES": 1,
+            "FIN": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "Argue the logic and precedent methodically",
+          "indicates": "Structured argumentation",
+          "weights": {
+            "LAW": 3
+          }
+        },
+        {
+          "label": "C",
+          "text": "Try to find a compromise that works for the group",
+          "indicates": "Consensus-building",
+          "weights": {
+            "BM": 2,
+            "GOV": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "Empathize with their view before responding",
+          "indicates": "Empathy-led resolution",
+          "weights": {
+            "HC": 2,
+            "EDU": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "dimension": "Problem-Solving",
+      "text": "Given a tricky problem, you'd rather:",
+      "options": [
+        {
+          "label": "A",
+          "text": "Break it into small technical steps and debug each one",
+          "indicates": "Stepwise technical solver",
+          "weights": {
+            "SW": 3,
+            "EE": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "Look at existing data/trends and predict what's likely",
+          "indicates": "Predictive/analytical solver",
+          "weights": {
+            "AI": 3,
+            "FIN": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "Talk to the people involved to understand the real issue",
+          "indicates": "People-first solver",
+          "weights": {
+            "HC": 2,
+            "GOV": 1,
+            "EDU": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "Research how others solved similar problems before",
+          "indicates": "Evidence-gathering solver",
+          "weights": {
+            "RES": 3,
+            "LAW": 1
+          }
+        },
+        {
+          "label": "E",
+          "text": "Brainstorm several creative options fast",
+          "indicates": "Divergent/creative solver",
+          "weights": {
+            "MED": 2,
+            "MKT": 2,
+            "UX": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "dimension": "Problem-Solving",
+      "text": "If an app or website you use crashes, your first reaction is:",
+      "options": [
+        {
+          "label": "A",
+          "text": "Curiosity about what part of the system failed",
+          "indicates": "Systems-debugging curiosity",
+          "weights": {
+            "SW": 3,
+            "CY": 2
+          }
+        },
+        {
+          "label": "B",
+          "text": "Concern about how it affects the business or its users",
+          "indicates": "Business-impact thinking",
+          "weights": {
+            "BM": 1,
+            "MKT": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "Wondering how the interface could've prevented this",
+          "indicates": "User-experience thinking",
+          "weights": {
+            "UX": 3
+          }
+        },
+        {
+          "label": "D",
+          "text": "You barely notice — you just wait and move on",
+          "indicates": "Low technical engagement",
+          "weights": {}
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "dimension": "Problem-Solving",
+      "text": "Which puzzle would you enjoy most?",
+      "options": [
+        {
+          "label": "A",
+          "text": "A logic or coding puzzle",
+          "indicates": "Logical-structural enjoyment",
+          "weights": {
+            "SW": 2,
+            "AI": 2
+          }
+        },
+        {
+          "label": "B",
+          "text": "A case study on why a company failed",
+          "indicates": "Business-analysis enjoyment",
+          "weights": {
+            "BM": 3,
+            "FIN": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "A mystery or detective-style case",
+          "indicates": "Investigative enjoyment",
+          "weights": {
+            "CY": 2,
+            "LAW": 2
+          }
+        },
+        {
+          "label": "D",
+          "text": "A design challenge (redesign a bad interface)",
+          "indicates": "Design-problem enjoyment",
+          "weights": {
+            "UX": 3
+          }
+        },
+        {
+          "label": "E",
+          "text": "A general-knowledge or research quiz",
+          "indicates": "Knowledge-seeking enjoyment",
+          "weights": {
+            "RES": 2,
+            "EDU": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "dimension": "Problem-Solving",
+      "text": "When solving problems, you prefer ones that involve:",
+      "options": [
+        {
+          "label": "A",
+          "text": "Clear right/wrong answers backed by data",
+          "indicates": "Determinate, data-backed problems",
+          "weights": {
+            "AI": 2,
+            "FIN": 2,
+            "RES": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "Multiple valid solutions and open interpretation",
+          "indicates": "Open-ended, creative problems",
+          "weights": {
+            "MED": 2,
+            "UX": 2,
+            "BM": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "Protecting something valuable from risk",
+          "indicates": "Risk/protection-oriented problems",
+          "weights": {
+            "CY": 3,
+            "LAW": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "Other people's wellbeing",
+          "indicates": "People-centered problems",
+          "weights": {
+            "HC": 3,
+            "EDU": 1,
+            "GOV": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "dimension": "Work Environment",
+      "text": "Your ideal daily work environment looks like:",
+      "options": [
+        {
+          "label": "A",
+          "text": "A quiet space, screen-focused, deep technical work",
+          "indicates": "Preference for focused solo tech work",
+          "weights": {
+            "SW": 2,
+            "AI": 2,
+            "CY": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "A lab or hands-on workshop with tools and equipment",
+          "indicates": "Preference for physical/applied work",
+          "weights": {
+            "EE": 3,
+            "HC": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "A busy office with meetings and people constantly",
+          "indicates": "Preference for high-interaction work",
+          "weights": {
+            "BM": 2,
+            "MKT": 2
+          }
+        },
+        {
+          "label": "D",
+          "text": "A classroom, hospital or community setting",
+          "indicates": "Preference for service settings",
+          "weights": {
+            "EDU": 2,
+            "HC": 2,
+            "GOV": 1
+          }
+        },
+        {
+          "label": "E",
+          "text": "A creative studio with flexible hours",
+          "indicates": "Preference for creative autonomy",
+          "weights": {
+            "MED": 2,
+            "UX": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "dimension": "Work Environment",
+      "text": "Which work schedule appeals to you most?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Structured 9-to-5 with predictable routines",
+          "indicates": "Preference for predictability",
+          "weights": {
+            "FIN": 2,
+            "GOV": 2
+          }
+        },
+        {
+          "label": "B",
+          "text": "Project-based and deadline-driven, some late nights when needed",
+          "indicates": "Preference for project cycles",
+          "weights": {
+            "SW": 1,
+            "MED": 1,
+            "BM": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "Flexible or freelance, work whenever inspiration strikes",
+          "indicates": "Preference for creative flexibility",
+          "weights": {
+            "MED": 3,
+            "UX": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "On-call or shift-based, ready to respond to emergencies",
+          "indicates": "Preference for responsive/urgent work",
+          "weights": {
+            "HC": 3,
+            "CY": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "dimension": "Work Environment",
+      "text": "Would you rather work:",
+      "options": [
+        {
+          "label": "A",
+          "text": "For a fast-moving startup building new products",
+          "indicates": "Startup/builder environment",
+          "weights": {
+            "SW": 2,
+            "AI": 1,
+            "MKT": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "For a stable government or public institution",
+          "indicates": "Public-sector environment",
+          "weights": {
+            "GOV": 3
+          }
+        },
+        {
+          "label": "C",
+          "text": "For a hospital, school or NGO helping people directly",
+          "indicates": "Frontline service environment",
+          "weights": {
+            "HC": 2,
+            "EDU": 2,
+            "GOV": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "For a corporate firm with a defined career ladder (bank, consultancy, law firm)",
+          "indicates": "Corporate/professional-services environment",
+          "weights": {
+            "FIN": 2,
+            "BM": 2,
+            "LAW": 2
+          }
+        },
+        {
+          "label": "E",
+          "text": "As an independent creator or freelancer",
+          "indicates": "Independent-creator environment",
+          "weights": {
+            "MED": 3,
+            "UX": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "dimension": "Work Environment",
+      "text": "How much structure do you want in your career path?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Highly structured with certifications/exams (like CA, law, medicine)",
+          "indicates": "Credential-driven path preference",
+          "weights": {
+            "FIN": 2,
+            "LAW": 2,
+            "HC": 2
+          }
+        },
+        {
+          "label": "B",
+          "text": "Fast-changing, always learning new tools (like tech)",
+          "indicates": "Continuous-learning path preference",
+          "weights": {
+            "SW": 2,
+            "AI": 2,
+            "CY": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "Flexible, no fixed script, driven by projects and portfolio",
+          "indicates": "Portfolio-driven path preference",
+          "weights": {
+            "MED": 2,
+            "UX": 2
+          }
+        },
+        {
+          "label": "D",
+          "text": "Structured but people-facing (teaching, public service)",
+          "indicates": "People-facing structured path",
+          "weights": {
+            "EDU": 2,
+            "GOV": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "dimension": "Motivation",
+      "text": "What would make you feel most proud of your work?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Building something millions of people use",
+          "indicates": "Scale/impact-through-product motivation",
+          "weights": {
+            "SW": 2,
+            "AI": 2
+          }
+        },
+        {
+          "label": "B",
+          "text": "Protecting people or organizations from harm",
+          "indicates": "Protection/security motivation",
+          "weights": {
+            "CY": 3,
+            "LAW": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "Directly changing someone's life for the better",
+          "indicates": "Direct human-impact motivation",
+          "weights": {
+            "HC": 3,
+            "EDU": 2,
+            "GOV": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "Growing a business or brand",
+          "indicates": "Growth/ownership motivation",
+          "weights": {
+            "BM": 2,
+            "MKT": 2,
+            "FIN": 1
+          }
+        },
+        {
+          "label": "E",
+          "text": "Creating something people find beautiful or moving",
+          "indicates": "Creative-legacy motivation",
+          "weights": {
+            "MED": 3,
+            "UX": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "dimension": "Motivation",
+      "text": "What matters most to you in a career?",
+      "options": [
+        {
+          "label": "A",
+          "text": "High earning potential and financial growth",
+          "indicates": "Financial-reward value",
+          "weights": {
+            "FIN": 3,
+            "BM": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "Job security and stability",
+          "indicates": "Security/stability value",
+          "weights": {
+            "GOV": 3,
+            "FIN": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "Constant intellectual challenge and learning",
+          "indicates": "Growth/mastery value",
+          "weights": {
+            "AI": 2,
+            "RES": 2,
+            "SW": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "Making a visible social impact",
+          "indicates": "Social-impact value",
+          "weights": {
+            "HC": 2,
+            "EDU": 2,
+            "GOV": 2
+          }
+        },
+        {
+          "label": "E",
+          "text": "Freedom to express your own ideas",
+          "indicates": "Autonomy/expression value",
+          "weights": {
+            "MED": 3,
+            "UX": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "dimension": "Motivation",
+      "text": "If money were not a concern, you would still want to:",
+      "options": [
+        {
+          "label": "A",
+          "text": "Keep building or inventing things",
+          "indicates": "Intrinsic builder drive",
+          "weights": {
+            "SW": 2,
+            "EE": 2
+          }
+        },
+        {
+          "label": "B",
+          "text": "Keep researching unanswered questions",
+          "indicates": "Intrinsic discovery drive",
+          "weights": {
+            "RES": 3,
+            "AI": 1
+          }
+        },
+        {
+          "label": "C",
+          "text": "Keep creating (writing, art, film, design)",
+          "indicates": "Intrinsic creative drive",
+          "weights": {
+            "MED": 3,
+            "UX": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "Keep helping or healing people",
+          "indicates": "Intrinsic care drive",
+          "weights": {
+            "HC": 3,
+            "EDU": 1
+          }
+        },
+        {
+          "label": "E",
+          "text": "Keep leading or growing an organization",
+          "indicates": "Intrinsic leadership drive",
+          "weights": {
+            "BM": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "dimension": "Motivation",
+      "text": "Which recognition would feel most rewarding?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Being known as a top technical expert / problem-solver",
+          "indicates": "Recognition via technical mastery",
+          "weights": {
+            "SW": 2,
+            "AI": 1,
+            "EE": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "Being known as someone who keeps people or systems safe",
+          "indicates": "Recognition via protection",
+          "weights": {
+            "CY": 3
+          }
+        },
+        {
+          "label": "C",
+          "text": "Being known as a trusted mentor or teacher",
+          "indicates": "Recognition via guidance",
+          "weights": {
+            "EDU": 3
+          }
+        },
+        {
+          "label": "D",
+          "text": "Being known for winning a tough case or argument",
+          "indicates": "Recognition via advocacy",
+          "weights": {
+            "LAW": 3
+          }
+        },
+        {
+          "label": "E",
+          "text": "Being known for growing a successful venture",
+          "indicates": "Recognition via enterprise",
+          "weights": {
+            "BM": 2,
+            "FIN": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "dimension": "Activities Enjoyed",
+      "text": "Which of these tasks sounds least boring to you?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Writing code to automate a repetitive task",
+          "indicates": "Automation enjoyment",
+          "weights": {
+            "SW": 3
+          }
+        },
+        {
+          "label": "B",
+          "text": "Reading financial news and stock trends",
+          "indicates": "Markets enjoyment",
+          "weights": {
+            "FIN": 3
+          }
+        },
+        {
+          "label": "C",
+          "text": "Sketching a new product or app interface",
+          "indicates": "Interface-design enjoyment",
+          "weights": {
+            "UX": 3
+          }
+        },
+        {
+          "label": "D",
+          "text": "Reading about a court judgment and its reasoning",
+          "indicates": "Legal-reasoning enjoyment",
+          "weights": {
+            "LAW": 3
+          }
+        },
+        {
+          "label": "E",
+          "text": "Volunteering to teach kids in your neighborhood",
+          "indicates": "Teaching enjoyment",
+          "weights": {
+            "EDU": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "dimension": "Activities Enjoyed",
+      "text": "If you had to give a 5-minute talk to your class tomorrow, which topic would you pick?",
+      "options": [
+        {
+          "label": "A",
+          "text": "A cool new technology or app",
+          "indicates": "Tech-communication interest",
+          "weights": {
+            "SW": 2,
+            "AI": 1
+          }
+        },
+        {
+          "label": "B",
+          "text": "A recent scientific discovery",
+          "indicates": "Science-communication interest",
+          "weights": {
+            "RES": 3
+          }
+        },
+        {
+          "label": "C",
+          "text": "A current business or startup success story",
+          "indicates": "Business-communication interest",
+          "weights": {
+            "BM": 2,
+            "MKT": 1
+          }
+        },
+        {
+          "label": "D",
+          "text": "A social or political issue you care about",
+          "indicates": "Civic-communication interest",
+          "weights": {
+            "GOV": 2,
+            "LAW": 1
+          }
+        },
+        {
+          "label": "E",
+          "text": "A health topic (fitness, nutrition, mental health)",
+          "indicates": "Health-communication interest",
+          "weights": {
+            "HC": 3
+          }
+        }
+      ]
+    }
+  ]
+}

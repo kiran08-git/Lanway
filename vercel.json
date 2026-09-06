@@ -1,0 +1,11 @@
+{
+  "installCommand": "npm install --prefix career-ai",
+  "buildCommand": "npm --prefix career-ai run build",
+  "outputDirectory": "career-ai/dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

@@ -60,17 +60,17 @@ export default function SkillRadarBar({
     <div className="flex flex-col h-full justify-between">
       <div>
         {/* Header */}
-        <div className="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-brand-ink-100">
+        <div className="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-brand-ink-100">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-brand-purple-50 text-brand-purple-600 flex items-center justify-center">
-              <BarChart2 size={18} />
+            <div className="h-7 w-7 rounded-lg bg-brand-purple-50 text-brand-purple-600 flex items-center justify-center">
+              <BarChart2 size={16} />
             </div>
             <div>
-              <h4 className="font-display font-bold text-brand-ink-900 text-sm sm:text-base">
+              <h4 className="font-display font-bold text-brand-ink-900 text-xs sm:text-sm">
                 Aptitude & Dimension Fit
               </h4>
-              <p className="text-[11px] text-brand-ink-500">
-                14 Holland RIASEC & Career Anchor benchmarks
+              <p className="text-[10px] text-brand-ink-500">
+                Holland RIASEC & Career Anchor benchmarks
               </p>
             </div>
           </div>
@@ -78,23 +78,23 @@ export default function SkillRadarBar({
           <button
             type="button"
             onClick={() => setExpanded((prev) => !prev)}
-            className="text-xs font-semibold text-brand-blue-600 hover:text-brand-blue-700 flex items-center gap-1 py-1 px-2 rounded-lg hover:bg-brand-blue-50 transition-colors"
+            className="text-[10px] font-semibold text-brand-blue-600 hover:text-brand-blue-700 flex items-center gap-1 py-0.5 px-1.5 rounded-lg hover:bg-brand-blue-50 transition-colors"
           >
-            <span>{expanded ? 'Show Top 4' : 'View All 14'}</span>
-            {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+            <span>{expanded ? 'Top 4' : 'All 14'}</span>
+            {expanded ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
           </button>
         </div>
 
         {/* Categories List */}
-        <div className="space-y-3.5">
+        <div className="space-y-2">
           {displayedCategories.map((cat, idx) => {
             const isTop = idx === 0;
             return (
-              <div key={cat.code} className="space-y-1">
+              <div key={cat.code} className="space-y-0.5">
                 <div className="flex items-center justify-between text-xs">
                   <div className="flex items-center gap-1.5 min-w-0">
                     <span
-                      className={`h-4 w-4 rounded-full text-[9px] font-bold flex items-center justify-center shrink-0 ${
+                      className={`h-3.5 w-3.5 rounded-full text-[8px] font-bold flex items-center justify-center shrink-0 ${
                         idx === 0
                           ? 'bg-amber-100 text-amber-800'
                           : idx === 1
@@ -104,16 +104,16 @@ export default function SkillRadarBar({
                     >
                       {idx + 1}
                     </span>
-                    <span className="font-semibold text-brand-ink-800 truncate">
+                    <span className="font-semibold text-brand-ink-800 text-[11px] truncate">
                       {cat.name}
                     </span>
-                    <span className="text-[10px] text-brand-ink-400 font-mono">
+                    <span className="text-[9px] text-brand-ink-400 font-mono">
                       ({cat.code})
                     </span>
                   </div>
 
                   <div className="flex items-center gap-1.5 shrink-0">
-                    <span className="font-extrabold text-brand-ink-900">
+                    <span className="font-extrabold text-brand-ink-900 text-xs">
                       {cat.percentage}%
                     </span>
                   </div>
@@ -128,7 +128,7 @@ export default function SkillRadarBar({
                       ? 'purple'
                       : 'mixed'
                   }
-                  height="h-1.5"
+                  height="h-1"
                 />
               </div>
             );
@@ -137,12 +137,12 @@ export default function SkillRadarBar({
       </div>
 
       {/* Footer View Full Analysis Button */}
-      <div className="mt-4 pt-4 border-t border-brand-ink-100">
+      <div className="mt-2 pt-2 border-t border-brand-ink-100">
         <button
           type="button"
-          className="w-full flex items-center justify-center gap-1.5 py-2 text-sm font-bold text-brand-blue-600 hover:text-brand-blue-700 hover:bg-brand-blue-50 rounded-lg transition-colors"
+          className="w-full flex items-center justify-center gap-1 py-1 text-xs font-bold text-brand-blue-600 hover:text-brand-blue-700 hover:bg-brand-blue-50 rounded-lg transition-colors"
         >
-          View Full Analysis <ChevronRight size={16} />
+          View Full Analysis <ChevronRight size={14} />
         </button>
       </div>
     </div>

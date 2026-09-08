@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PieChart, Sliders, Layers, Sparkles, Filter, RotateCcw } from 'lucide-react';
+import { PieChart, Sparkles, Filter, RotateCcw } from 'lucide-react';
 
 // Domain color palette for vibrant, modern aesthetics
 const DOMAIN_COLORS = {
@@ -17,13 +17,6 @@ const DOMAIN_COLORS = {
   'Media & Creative': '#A855F7', // Violet
   'Government & Public Service': '#059669', // Green
   General: '#3B82F6',
-};
-
-const TIER_COLORS = {
-  'High Fit (90%+)': '#10B981', // Emerald
-  'Strong Fit (80–89%)': '#3B82F6', // Blue
-  'Moderate Fit (70–79%)': '#8B5CF6', // Purple
-  'Emerging Fit (<70%)': '#F59E0B', // Amber
 };
 
 const FALLBACK_COLORS = [
@@ -76,7 +69,6 @@ export default function CareerMatchPieChart({
   selectedCategory = 'ALL',
   onSelectCategory,
 }) {
-  const [viewMode, setViewMode] = useState('domain'); // 'domain' | 'tier'
   const [hoveredSlice, setHoveredSlice] = useState(null);
 
   if (!careers || careers.length === 0) {
@@ -87,98 +79,43 @@ export default function CareerMatchPieChart({
     );
   }
 
-  // Aggregate Data based on current viewMode
-  let slices = [];
+  // Aggregate Data by Domain
   const totalCareers = careers.length;
+  const domainCounts = {};
+  const domainScores = {};
 
-  if (viewMode === 'domain') {
-    const domainCounts = {};
-    const domainScores = {};
+  careers.forEach((career) => {
+    const domain = career.field || 'General';
+    domainCounts[domain] = (domainCounts[domain] || 0) + 1;
+    const score = career.matchScore || 80;
+    domainScores[domain] = (domainScores[domain] || 0) + score;
+  });
 
-    careers.forEach((career) => {
-      const domain = career.field || 'General';
-      domainCounts[domain] = (domainCounts[domain] || 0) + 1;
-      const score = career.matchScore || 80;
-      domainScores[domain] = (domainScores[domain] || 0) + score;
-    });
+  const entries = Object.entries(domainCounts).sort((a, b) => b[1] - a[1]);
+  let currentAngle = 0;
 
-    const entries = Object.entries(domainCounts).sort((a, b) => b[1] - a[1]);
-    let currentAngle = 0;
+  const slices = entries.map(([domain, count], index) => {
+    const percentage = (count / totalCareers) * 100;
+    const angle = (count / totalCareers) * 360;
+    const startAngle = currentAngle;
+    const endAngle = currentAngle + angle;
+    currentAngle = endAngle;
 
-    slices = entries.map(([domain, count], index) => {
-      const percentage = (count / totalCareers) * 100;
-      const angle = (count / totalCareers) * 360;
-      const startAngle = currentAngle;
-      const endAngle = currentAngle + angle;
-      currentAngle = endAngle;
+    const avgScore = Math.round(domainScores[domain] / count);
+    const color =
+      DOMAIN_COLORS[domain] || FALLBACK_COLORS[index % FALLBACK_COLORS.length];
 
-      const avgScore = Math.round(domainScores[domain] / count);
-      const color =
-        DOMAIN_COLORS[domain] || FALLBACK_COLORS[index % FALLBACK_COLORS.length];
-
-      return {
-        id: domain,
-        label: domain,
-        count,
-        percentage: Math.round(percentage),
-        avgScore,
-        color,
-        startAngle,
-        endAngle,
-      };
-    });
-  } else {
-    // Group by Match Tier
-    const tiers = [
-      { key: 'High Fit (90%+)', min: 90, max: 100 },
-      { key: 'Strong Fit (80–89%)', min: 80, max: 89.99 },
-      { key: 'Moderate Fit (70–79%)', min: 70, max: 79.99 },
-      { key: 'Emerging Fit (<70%)', min: 0, max: 69.99 },
-    ];
-
-    const tierCounts = {};
-    const tierScores = {};
-
-    tiers.forEach((t) => {
-      tierCounts[t.key] = 0;
-      tierScores[t.key] = 0;
-    });
-
-    careers.forEach((career) => {
-      const score = career.matchScore || 75;
-      const tier =
-        tiers.find((t) => score >= t.min && score <= t.max)?.key ||
-        'Emerging Fit (<70%)';
-      tierCounts[tier] = (tierCounts[tier] || 0) + 1;
-      tierScores[tier] = (tierScores[tier] || 0) + score;
-    });
-
-    let currentAngle = 0;
-    slices = tiers
-      .filter((t) => tierCounts[t.key] > 0)
-      .map((t) => {
-        const count = tierCounts[t.key];
-        const percentage = (count / totalCareers) * 100;
-        const angle = (count / totalCareers) * 360;
-        const startAngle = currentAngle;
-        const endAngle = currentAngle + angle;
-        currentAngle = endAngle;
-
-        const avgScore = count > 0 ? Math.round(tierScores[t.key] / count) : 0;
-        const color = TIER_COLORS[t.key] || '#3B82F6';
-
-        return {
-          id: t.key,
-          label: t.key,
-          count,
-          percentage: Math.round(percentage),
-          avgScore,
-          color,
-          startAngle,
-          endAngle,
-        };
-      });
-  }
+    return {
+      id: domain,
+      label: domain,
+      count,
+      percentage: Math.round(percentage),
+      avgScore,
+      color,
+      startAngle,
+      endAngle,
+    };
+  });
 
   // Active highlighted slice
   const activeSlice = hoveredSlice || slices[0];
@@ -186,76 +123,44 @@ export default function CareerMatchPieChart({
     careers.reduce((acc, c) => acc + (c.matchScore || 80), 0) / totalCareers
   );
 
-  const cx = 130;
-  const cy = 130;
-  const outerRadius = 100;
-  const innerRadius = 64;
+  const cx = 100;
+  const cy = 100;
+  const outerRadius = 80;
+  const innerRadius = 50;
 
   const isFiltered = selectedCategory && selectedCategory !== 'ALL';
 
   return (
     <div className="flex flex-col h-full justify-between">
-      {/* Top Header & Toggle Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+      {/* Top Header */}
+      <div className="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-brand-ink-100">
         <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center">
-            <PieChart size={18} />
+          <div className="h-7 w-7 rounded-lg bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center">
+            <PieChart size={16} />
           </div>
           <div>
-            <h4 className="font-display font-bold text-brand-ink-900 text-sm sm:text-base flex items-center gap-2">
+            <h4 className="font-display font-bold text-brand-ink-900 text-xs sm:text-sm">
               Career Matches Distribution
             </h4>
-            <p className="text-[11px] text-brand-ink-500">
-              Interactive visual breakdown of {totalCareers} matched pathways
+            <p className="text-[10px] text-brand-ink-500">
+              Visual breakdown of {totalCareers} matched pathways
             </p>
           </div>
-        </div>
-
-        {/* View Mode Toggle */}
-        <div className="flex items-center p-0.5 bg-brand-ink-100/80 rounded-lg text-xs">
-          <button
-            type="button"
-            onClick={() => {
-              setViewMode('domain');
-              setHoveredSlice(null);
-            }}
-            className={`px-2.5 py-1 rounded-md font-semibold transition-all ${
-              viewMode === 'domain'
-                ? 'bg-white text-brand-blue-700 shadow-xs'
-                : 'text-brand-ink-600 hover:text-brand-ink-900'
-            }`}
-          >
-            By Domain
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setViewMode('tier');
-              setHoveredSlice(null);
-            }}
-            className={`px-2.5 py-1 rounded-md font-semibold transition-all ${
-              viewMode === 'tier'
-                ? 'bg-white text-brand-blue-700 shadow-xs'
-                : 'text-brand-ink-600 hover:text-brand-ink-900'
-            }`}
-          >
-            By Match Tier
-          </button>
         </div>
       </div>
 
       {/* Main Chart + Legend Section */}
-      <div className="grid sm:grid-cols-12 gap-6 items-center my-auto">
+      <div className="grid sm:grid-cols-12 gap-3 items-center my-auto">
         {/* SVG Donut Chart (5 cols) */}
-        <div className="sm:col-span-6 flex flex-col items-center justify-center relative">
-          <div className="relative w-[260px] h-[260px] flex items-center justify-center">
+        <div className="sm:col-span-5 flex flex-col items-center justify-center relative">
+          <div className="relative w-[180px] h-[180px] flex items-center justify-center">
             <svg
-              viewBox="0 0 260 260"
+              viewBox="0 0 200 200"
               className="w-full h-full transform -rotate-90 transition-transform duration-300 overflow-visible"
             >
               <defs>
                 <filter id="pie-glow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feDropShadow dx="0" dy="4" stdDeviation="6" floodOpacity="0.15" />
+                  <feDropShadow dx="0" dy="3" stdDeviation="4" floodOpacity="0.15" />
                 </filter>
               </defs>
 
@@ -317,23 +222,23 @@ export default function CareerMatchPieChart({
         </div>
 
         {/* Legend & Breakdown List (7 cols) */}
-        <div className="sm:col-span-6 space-y-2">
-          <div className="flex items-center justify-between pb-2 border-b border-brand-ink-100">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-ink-500">
-              {viewMode === 'domain' ? 'Domains' : 'Compatibility Tiers'}
+        <div className="sm:col-span-7 space-y-1">
+          <div className="flex items-center justify-between pb-1 border-b border-brand-ink-100">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-brand-ink-500">
+              Domains
             </span>
             {isFiltered && (
               <button
                 type="button"
                 onClick={() => onSelectCategory && onSelectCategory('ALL')}
-                className="text-[11px] font-semibold text-brand-blue-600 hover:text-brand-blue-700 flex items-center gap-1 bg-brand-blue-50 px-2 py-0.5 rounded-md transition-colors"
+                className="text-[10px] font-semibold text-brand-blue-600 hover:text-brand-blue-700 flex items-center gap-1 bg-brand-blue-50 px-1.5 py-0.5 rounded-md transition-colors"
               >
-                <RotateCcw size={11} /> Reset Filter
+                <RotateCcw size={10} /> Reset Filter
               </button>
             )}
           </div>
 
-          <div className="space-y-1.5 max-h-[220px] overflow-y-auto pr-1 scrollbar-thin">
+          <div className="space-y-1 max-h-[150px] overflow-y-auto pr-1 scrollbar-thin">
             {slices.map((slice) => {
               const isHovered = hoveredSlice?.id === slice.id;
               const isSelected = selectedCategory === slice.id;

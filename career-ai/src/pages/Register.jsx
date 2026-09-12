@@ -51,7 +51,7 @@ export default function Register() {
       }
 
       await signup(formData.email, formData.password, formData.name, formData.role, formData.companyName);
-      navigate(formData.role === 'recruiter' ? '/company-dashboard' : '/profile');
+      navigate(`/verify-email?email=${encodeURIComponent(formData.email)}`);
     } catch (err) {
       setError(err.message || 'Failed to create account. Please try again.');
       console.error('Signup error:', err);

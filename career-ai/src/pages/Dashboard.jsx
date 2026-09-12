@@ -120,7 +120,7 @@ export default function Dashboard() {
                 )}%20and%20create%20a%20step-by-step%20learning%20plan%20for%20me.`
               )
             }
-            className="!bg-[#d97706] hover:!bg-[#b45309] !text-white text-xs py-1.5 shadow-none border-none font-semibold"
+            className="!bg-brand-blue-600 hover:!bg-brand-blue-700 !text-white text-xs py-1.5 shadow-none border-none font-semibold"
           >
             Ask AI
           </Button>

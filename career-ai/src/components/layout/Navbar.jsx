@@ -1,23 +1,33 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Compass, Menu, X } from 'lucide-react';
 import Button from '../ui/Button';
 
 const LINKS = [
   { label: 'How it works', href: '#how-it-works' },
   { label: 'For students', href: '#students' },
-  { label: 'For companies', href: '/register' },
+  { label: 'For companies', href: '/recruiters' },
   { label: 'FAQ', href: '#faq' },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavClick = (event, href) => {
+    setOpen(false);
+
+    if (href.startsWith('#') && location.pathname !== '/') {
+      event.preventDefault();
+      navigate(`/${href}`);
+    }
+  };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-brand-ink-100">
+    <header className="sticky top-0 z-50 bg-[#fbfaf8]/95 backdrop-blur-md border-b border-brand-ink-200">
       <div className="container-app flex items-center justify-between h-16">
-        <Link to="/" className="flex items-center gap-2 font-display font-bold text-lg text-brand-ink-900">
+        <Link to="/" className="flex items-center gap-2 font-display font-extrabold text-lg tracking-[-0.02em] text-brand-ink-900">
           <img src="/logo.png" alt="Lanway Logo" className="h-9 w-auto object-contain shrink-0" style={{ imageRendering: 'high-quality' }} />
           Lanway
         </Link>
@@ -28,6 +38,7 @@ export default function Navbar() {
               key={link.label}
               href={link.href}
               className="text-sm font-medium text-brand-ink-600 hover:text-brand-blue-700 transition-colors"
+              onClick={(event) => handleNavClick(event, link.href)}
             >
               {link.label}
             </a>
@@ -52,7 +63,7 @@ export default function Navbar() {
         <div className="md:hidden border-t border-brand-ink-100 bg-white animate-fade-in">
           <div className="container-app py-4 flex flex-col gap-4">
             {LINKS.map((link) => (
-              <a key={link.label} href={link.href} className="text-sm font-medium text-brand-ink-600" onClick={() => setOpen(false)}>
+              <a key={link.label} href={link.href} className="text-sm font-medium text-brand-ink-600" onClick={(event) => handleNavClick(event, link.href)}>
                 {link.label}
               </a>
             ))}

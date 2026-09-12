@@ -67,6 +67,7 @@ export default function CareerDetails() {
   const skillGaps = (aiCareer?.skillGaps && aiCareer.skillGaps.length > 0) ? aiCareer.skillGaps : (dbMatch.skillGaps || []);
   const recommendedSkills = (aiCareer?.recommendedSkills && aiCareer.recommendedSkills.length > 0) ? aiCareer.recommendedSkills : (dbMatch.recommendedSkills || []);
   const CareerIcon = (dbMatch.icon && Icons[dbMatch.icon]) || Briefcase;
+  const careerRouteId = dbMatch.id || id;
 
   return (
     <DashboardLayout title="Career Details" subtitle={title}>
@@ -120,7 +121,7 @@ export default function CareerDetails() {
                 variant="primary"
                 icon={ArrowRight}
                 iconPosition="right"
-                onClick={() => navigate(`/roadmap/${id || dbMatch.id}`)}
+                onClick={() => navigate(`/roadmap/${careerRouteId}`)}
                 className="shadow-soft text-xs"
               >
                 View Roadmap
@@ -336,7 +337,7 @@ export default function CareerDetails() {
             <Button
               variant="secondary"
               className="!bg-white !text-brand-ink-900 !border-none w-full shadow-sm hover:!bg-brand-blue-50"
-              onClick={() => navigate(`/roadmap/${id || dbMatch.id}`)}
+              onClick={() => navigate(`/roadmap/${careerRouteId}`)}
             >
               View learning roadmap
             </Button>

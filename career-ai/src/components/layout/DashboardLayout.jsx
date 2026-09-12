@@ -70,7 +70,7 @@ export default function DashboardLayout({ children, title, subtitle }) {
             onClick={() => setMobileOpen(false)}
             className={({ isActive }) =>
               `flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition-colors duration-150 relative ${isActive
-                ? 'bg-brand-blue-50 text-brand-blue-600 before:absolute before:-left-4 before:top-0 before:bottom-0 before:w-1 before:bg-brand-blue-600 before:rounded-r-md'
+                ? 'bg-brand-blue-50 text-brand-blue-700 before:absolute before:-left-4 before:top-0 before:bottom-0 before:w-1 before:bg-brand-blue-600 before:rounded-r-md'
                 : 'text-brand-ink-500 hover:bg-brand-ink-50 hover:text-brand-ink-900'
               }`
             }
@@ -93,9 +93,9 @@ export default function DashboardLayout({ children, title, subtitle }) {
   );
 
   return (
-    <div className="min-h-screen bg-white flex">
+    <div className="min-h-screen bg-[#fbfaf8] flex">
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex w-64 shrink-0 flex-col border-r border-brand-ink-100 bg-white px-4 py-6 sticky top-0 h-screen">
+      <aside className="hidden lg:flex w-64 shrink-0 flex-col border-r border-brand-ink-200 bg-[#fbfaf8] px-4 py-6 sticky top-0 h-screen">
         {SidebarContent}
       </aside>
 
@@ -103,7 +103,7 @@ export default function DashboardLayout({ children, title, subtitle }) {
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="absolute inset-0 bg-black/30" onClick={() => setMobileOpen(false)} />
-          <aside className="absolute left-0 top-0 h-full w-72 bg-white px-4 py-6 shadow-2xl animate-fade-in">
+          <aside className="absolute left-0 top-0 h-full w-72 bg-[#fbfaf8] px-4 py-6 shadow-2xl animate-fade-in">
             <button className="absolute right-4 top-4 text-brand-ink-500" onClick={() => setMobileOpen(false)}>
               <X size={22} />
             </button>
@@ -114,7 +114,7 @@ export default function DashboardLayout({ children, title, subtitle }) {
 
       <div className="flex-1 min-w-0 flex flex-col">
         {/* Topbar */}
-        <header className="sticky top-0 z-30 bg-white border-b border-brand-ink-100">
+        <header className="sticky top-0 z-30 bg-[#fbfaf8]/95 backdrop-blur-md border-b border-brand-ink-200">
           <div className="flex items-center justify-between h-[72px] px-5 lg:px-8">
             <div className="flex items-center gap-3 min-w-0">
               <button className="lg:hidden text-brand-ink-600" onClick={() => setMobileOpen(true)} aria-label="Open menu">

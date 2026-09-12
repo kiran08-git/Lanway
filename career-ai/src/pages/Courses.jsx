@@ -226,50 +226,50 @@ export default function Courses() {
       subtitle="Curated high-quality video courses organized by career domain"
     >
       {/* Hero Banner */}
-      <div className="relative overflow-hidden rounded-2xl bg-brand-blue-600 text-white p-6 sm:p-8 mb-8 shadow-xs">
+      <div className="relative overflow-hidden rounded-2xl bg-brand-blue-600 text-white p-4 sm:p-5 mb-5 shadow-xs">
         {/* Background glow ornaments */}
-        <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-white/10 blur-2xl pointer-events-none" />
-        <div className="absolute right-32 -bottom-20 h-56 w-56 rounded-full bg-brand-purple-400/20 blur-2xl pointer-events-none" />
+        <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/10 blur-2xl pointer-events-none" />
+        <div className="absolute right-32 -bottom-20 h-44 w-44 rounded-full bg-brand-purple-400/20 blur-2xl pointer-events-none" />
 
-        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-3">
-              <YoutubeIcon size={14} className="text-red-400" />
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/15 backdrop-blur-md text-[11px] font-semibold uppercase tracking-wider mb-2">
+              <YoutubeIcon size={13} className="text-red-400" />
               100% Free Video Courses & Tutorials
             </div>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white mb-2 leading-tight">
+            <h1 className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-white mb-1 leading-snug">
               Master High-Demand Skills with Free YouTube Courses
             </h1>
 
-            <p className="text-brand-blue-100 text-sm sm:text-base leading-relaxed">
+            <p className="text-brand-blue-100 text-xs sm:text-sm leading-relaxed">
               Explore university-grade lectures, crash courses, and full masterclasses. Stream directly inside CareerAI, take study notes, and track your completion.
             </p>
           </div>
 
           {/* Action & Quick Stats */}
-          <div className="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0">
+          <div className="flex flex-col sm:flex-row lg:flex-col gap-2.5 shrink-0">
             <button
               onClick={handleOpenUpload}
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-white text-brand-ink-900 font-display font-bold text-sm shadow-xl hover:bg-brand-blue-50 transition-all hover:scale-102 hover:shadow-2xl"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-white text-brand-ink-900 font-display font-bold text-xs sm:text-sm shadow-md hover:bg-brand-blue-50 transition-all hover:scale-[1.01]"
             >
-              <Plus size={18} className="text-brand-purple-600" />
+              <Plus size={16} className="text-brand-purple-600" />
               <span>Upload / Add Course</span>
             </button>
 
-            <div className="flex items-center justify-around gap-4 px-4 py-2 rounded-xl bg-black/20 backdrop-blur-md text-xs">
+            <div className="flex items-center justify-around gap-3.5 px-3.5 py-1.5 rounded-xl bg-black/20 backdrop-blur-md text-xs">
               <div className="text-center">
-                <span className="block font-bold text-base text-white">{courses.length}</span>
+                <span className="block font-bold text-sm text-white">{courses.length}</span>
                 <span className="text-brand-blue-200 text-[10px]">Total Courses</span>
               </div>
-              <div className="w-px h-6 bg-white/20" />
+              <div className="w-px h-5 bg-white/20" />
               <div className="text-center">
-                <span className="block font-bold text-base text-white">14</span>
+                <span className="block font-bold text-sm text-white">14</span>
                 <span className="text-brand-blue-200 text-[10px]">Categories</span>
               </div>
-              <div className="w-px h-6 bg-white/20" />
+              <div className="w-px h-5 bg-white/20" />
               <div className="text-center">
-                <span className="block font-bold text-base text-white">{completedIds.length}</span>
+                <span className="block font-bold text-sm text-white">{completedIds.length}</span>
                 <span className="text-brand-blue-200 text-[10px]">Completed</span>
               </div>
             </div>

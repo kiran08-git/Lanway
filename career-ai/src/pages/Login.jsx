@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Target, Mail, Lock, ArrowRight, AlertCircle } from 'lucide-react';
+import { Mail, Lock, ArrowRight, AlertCircle } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
@@ -12,8 +12,8 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [formData, setFormData] = useState({
-    email: 'ananya.sharma@example.com',
-    password: 'password123',
+    email: '',
+    password: '',
   });
 
   const handleChange = (e) => {

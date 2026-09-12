@@ -26,7 +26,10 @@ export function AuthProvider({ children }) {
           const userRole = session.user.user_metadata?.role || 'student';
           setRole(userRole);
           // Load user profile
-          await loadProfile(session.user.id, userRole);
+          const existingProfile = await loadProfile(session.user.id, userRole);
+          if (!existingProfile && session.user.email_confirmed_at) {
+            await createProfileFromUser(session.user, userRole);
+          }
         }
       } catch (err) {
         console.error('Auth initialization error:', err);
@@ -44,7 +47,10 @@ export function AuthProvider({ children }) {
         setUser(session.user);
         const userRole = session.user.user_metadata?.role || 'student';
         setRole(userRole);
-        await loadProfile(session.user.id, userRole);
+        const existingProfile = await loadProfile(session.user.id, userRole);
+        if (!existingProfile && session.user.email_confirmed_at) {
+          await createProfileFromUser(session.user, userRole);
+        }
       } else {
         setUser(null);
         setProfile(null);
@@ -68,10 +74,22 @@ export function AuthProvider({ children }) {
 
       if (error && error.code !== 'PGRST116') throw error; // PGRST116 = no rows returned
       setProfile(data || null);
+      return data || null;
     } catch (err) {
       console.error('Profile load error:', err);
       setProfile(null);
+      return null;
     }
+  };
+
+  const createProfileFromUser = async (authUser, userRole) => {
+    return createProfile(
+      authUser.id,
+      authUser.user_metadata?.full_name || authUser.email,
+      authUser.email,
+      userRole,
+      authUser.user_metadata?.company_name || ''
+    );
   };
 
   const signup = async (email, password, name, signupRole = 'student', companyName = '') => {
@@ -84,17 +102,23 @@ export function AuthProvider({ children }) {
           data: {
             role: signupRole,
             full_name: name,
+            company_name: companyName,
           },
+          emailRedirectTo: `${window.location.origin}/verify-email`,
         },
       });
 
       if (error) throw error;
       
       if (data.user) {
-        setUser(data.user);
-        setRole(signupRole);
-        // Create initial profile
-        await createProfile(data.user.id, name, email, signupRole, companyName);
+        if (data.session) {
+          setUser(data.user);
+          setRole(signupRole);
+        }
+        // With email confirmation enabled there is no session yet, so create the profile after login.
+        if (data.session) {
+          await createProfile(data.user.id, name, email, signupRole, companyName);
+        }
       }
       
       return data;
@@ -113,12 +137,20 @@ export function AuthProvider({ children }) {
       });
 
       if (error) throw error;
+
+      if (data.user && !data.user.email_confirmed_at) {
+        await supabase.auth.signOut();
+        throw new Error('Please verify your email address before logging in.');
+      }
       
       if (data.user) {
         setUser(data.user);
         const userRole = data.user.user_metadata?.role || 'student';
         setRole(userRole);
-        await loadProfile(data.user.id, userRole);
+        const existingProfile = await loadProfile(data.user.id, userRole);
+        if (!existingProfile) {
+          await createProfileFromUser(data.user, userRole);
+        }
       }
       
       return data;
@@ -147,12 +179,12 @@ export function AuthProvider({ children }) {
       if (userRole === 'recruiter') {
         const { data, error } = await supabase
           .from('company_profiles')
-          .insert({
+          .upsert({
             id: userId,
             recruiter_name: name,
             company_name: companyName || name,
             created_at: new Date().toISOString(),
-          })
+          }, { onConflict: 'id' })
           .select()
           .single();
         if (error) throw error;
@@ -161,12 +193,12 @@ export function AuthProvider({ children }) {
       } else {
         const { data, error } = await supabase
           .from('student_profiles')
-          .insert({
+          .upsert({
             id: userId,
             name,
             email,
             created_at: new Date().toISOString(),
-          })
+          }, { onConflict: 'id' })
           .select()
           .single();
         if (error) throw error;
@@ -208,6 +240,8 @@ export function AuthProvider({ children }) {
         profile,
         role,
         isRecruiter: role === 'recruiter',
+        isEmailVerified: Boolean(user?.email_confirmed_at),
+        isEmailVerified: Boolean(user?.email_confirmed_at),
         loading,
         error,
         signup,
@@ -215,6 +249,16 @@ export function AuthProvider({ children }) {
         logout,
         updateProfile,
         loadProfile,
+        resendVerificationEmail: (email) => supabase.auth.resend({
+          type: 'signup',
+          email,
+          options: { emailRedirectTo: `${window.location.origin}/verify-email` },
+        }),
+        resendVerificationEmail: (email) => supabase.auth.resend({
+          type: 'signup',
+          email,
+          options: { emailRedirectTo: `${window.location.origin}/verify-email` },
+        }),
       }}
     >
       {children}

@@ -13,6 +13,8 @@ import LearningRoadmap from './pages/LearningRoadmap';
 import Courses from './pages/Courses';
 import Opportunities from './pages/Opportunities';
 import Chat from './pages/Chat';
+import Recruiters from './pages/Recruiters';
+import VerifyEmail from './pages/VerifyEmail';
 
 // Company & Candidate Routes
 import CompanyDashboard from './pages/company/CompanyDashboard';
@@ -33,6 +35,8 @@ export default function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/recruiters" element={<Recruiters />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
           <Route
             path="/dashboard"
             element={

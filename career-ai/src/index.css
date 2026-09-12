@@ -8,14 +8,16 @@
   }
 
   body {
-    @apply bg-white text-brand-ink-800 font-sans antialiased;
+    @apply bg-[#f7fafc] text-brand-ink-800 antialiased;
+    font-family: 'Lato', system-ui, sans-serif;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    @apply font-display text-brand-ink-900;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    @apply text-brand-ink-900;
   }
 }
 
@@ -25,27 +27,27 @@
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold text-sm px-5 py-2.5 transition-all duration-200 disabled:opacity-50 disabled:pointer-events-none;
+    @apply inline-flex items-center justify-center gap-2 rounded-md font-semibold text-sm px-5 py-2.5 transition-all duration-200 disabled:opacity-50 disabled:pointer-events-none;
   }
 
   .btn-primary {
-    @apply btn bg-brand-blue-600 text-white hover:bg-brand-blue-700 shadow-soft hover:shadow-glow hover:-translate-y-0.5;
+    @apply btn bg-brand-blue-600 text-white hover:bg-brand-blue-700 shadow-sm hover:shadow-md;
   }
 
   .btn-secondary {
-    @apply btn bg-white text-brand-ink-800 border border-brand-ink-200 hover:border-brand-blue-300 hover:text-brand-blue-700 hover:-translate-y-0.5;
+    @apply btn bg-white text-brand-ink-800 border border-brand-ink-200 hover:border-brand-ink-400 hover:bg-brand-ink-50;
   }
 
   .btn-ghost {
-    @apply btn text-brand-ink-600 hover:text-brand-blue-700 hover:bg-brand-blue-50;
+    @apply btn text-brand-ink-600 hover:text-brand-ink-900 hover:bg-brand-ink-100;
   }
 
   .card {
-    @apply bg-white border border-black rounded-none shadow-none transition-all duration-200;
+    @apply bg-white border border-brand-ink-200 rounded-lg shadow-card transition-all duration-200;
   }
 
   .card-hover {
-    @apply hover:-translate-y-1 hover:border-black hover:shadow-none;
+    @apply hover:-translate-y-0.5 hover:border-brand-blue-300 hover:shadow-soft;
   }
 
   .input-field {
@@ -57,30 +59,30 @@
   }
 
   .section-eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-purple-600 bg-brand-purple-50 rounded-full px-3 py-1;
+    @apply inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-brand-blue-700 bg-brand-blue-50 rounded-md px-2.5 py-1;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-brand-blue-600 to-brand-purple-600 bg-clip-text text-transparent;
+    @apply text-brand-blue-600;
   }
 
-  .font-assistant-script {
-    font-family: 'Dancing Script', 'Satisfy', 'Caveat', cursive;
+  .font-display {
+    font-family: 'Playfair Display', Georgia, serif;
   }
 
-  .font-assistant-tag {
-    font-family: 'Caveat', 'Dancing Script', cursive;
+  .font-body {
+    font-family: 'Lato', system-ui, sans-serif;
   }
 
   .assistant-title-gradient {
-    background: linear-gradient(135deg, #d97706 0%, #f59e0b 30%, #64748b 70%, #1e293b 100%);
+    background: linear-gradient(135deg, #17658f 0%, #14796e 55%, #183b56 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .assistant-card-border {
-    border-color: #fde68a;
+    border-color: #ffd0b8;
   }
 }
 
@@ -94,6 +96,6 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #dde1e8;
+  background: #d4d4d4;
   border-radius: 999px;
 }

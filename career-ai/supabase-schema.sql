@@ -15,9 +15,14 @@ CREATE TABLE IF NOT EXISTS public.student_profiles (
   skills TEXT[] DEFAULT '{}',
   interests TEXT[] DEFAULT '{}',
   career_goal TEXT,
+  profile_data JSONB NOT NULL DEFAULT '{}'::jsonb,
+  resume_data JSONB NOT NULL DEFAULT '{}'::jsonb,
   created_at TIMESTAMPTZ DEFAULT timezone('utc'::text, now()) NOT NULL,
   updated_at TIMESTAMPTZ DEFAULT timezone('utc'::text, now()) NOT NULL
 );
+
+ALTER TABLE public.student_profiles ADD COLUMN IF NOT EXISTS profile_data JSONB NOT NULL DEFAULT '{}'::jsonb;
+ALTER TABLE public.student_profiles ADD COLUMN IF NOT EXISTS resume_data JSONB NOT NULL DEFAULT '{}'::jsonb;
 
 -- 2. Assessment Results Table (Stores full 30 answers & 14-category scores)
 CREATE TABLE IF NOT EXISTS public.assessment_results (
@@ -305,6 +310,19 @@ CREATE POLICY "Companies can update their candidates" ON public.assessment_candi
 CREATE POLICY "Candidates can view their own test session" ON public.assessment_candidates FOR SELECT USING (auth.uid() = candidate_id);
 CREATE POLICY "Candidates can insert their test session" ON public.assessment_candidates FOR INSERT WITH CHECK (auth.uid() = candidate_id);
 CREATE POLICY "Candidates can update their test session" ON public.assessment_candidates FOR UPDATE USING (auth.uid() = candidate_id);
+
+DROP POLICY IF EXISTS "Companies can view candidate profiles" ON public.student_profiles;
+CREATE POLICY "Companies can view candidate profiles"
+  ON public.student_profiles FOR SELECT
+  USING (
+    EXISTS (
+      SELECT 1
+      FROM public.assessment_candidates ac
+      JOIN public.company_assessments ca ON ca.id = ac.assessment_id
+      WHERE ac.candidate_id = student_profiles.id
+        AND ca.company_id = auth.uid()
+    )
+  );
 
 -- RLS: proctoring_events
 CREATE POLICY "Companies can view proctoring events" ON public.proctoring_events FOR SELECT USING (

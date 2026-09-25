@@ -609,11 +609,11 @@ export default function Chat() {
       title="AI Assistant"
       subtitle="Your personal AI companion with open questions, voice chat & learning plans"
     >
-      <div className="relative flex h-[calc(100vh-10.5rem)] min-h-[620px] bg-white rounded-3xl border border-gray-200/80 shadow-card overflow-hidden">
+      <div className="relative flex h-[calc(100vh-8.5rem)] min-h-[480px] sm:h-[calc(100vh-10.5rem)] sm:min-h-[620px] bg-white rounded-3xl border border-gray-200/80 shadow-card overflow-hidden">
         {/* ========================================================================= */}
         {/* 1. LEFT ICON NAVIGATION RAIL (+, Chat Bubble, Lightning)                  */}
         {/* ========================================================================= */}
-        <div className="w-16 sm:w-18 shrink-0 bg-white border-r border-gray-200/80 flex flex-col items-center py-6 gap-6 z-20">
+        <div className="w-14 sm:w-16 shrink-0 bg-white border-r border-gray-200/80 flex flex-col items-center py-4 sm:py-6 gap-4 sm:gap-6 z-20">
           {/* Plus Icon (+) - New Chat */}
           <button
             onClick={handleNewChat}
@@ -694,7 +694,7 @@ export default function Chat() {
         {/* 2. HISTORY DRAWER (Opens when clicking Chat Bubble)                      */}
         {/* ========================================================================= */}
         {historyOpen && (
-          <aside className="absolute left-16 sm:left-18 top-0 bottom-0 w-72 bg-white/95 backdrop-blur-md border-r border-gray-200 z-30 flex flex-col shadow-2xl animate-fade-in">
+          <aside className="absolute left-14 sm:left-16 top-0 bottom-0 w-[78vw] max-w-[18rem] sm:w-72 bg-white/95 backdrop-blur-md border-r border-gray-200 z-30 flex flex-col shadow-2xl animate-fade-in">
             <div className="p-4 border-b border-gray-100 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <MessageSquare size={17} className="text-[#6366f1]" />
@@ -773,7 +773,7 @@ export default function Chat() {
         {/* 3. AI QUICK TOOLS DRAWER (Opens when clicking Lightning Bolt ⚡)           */}
         {/* ========================================================================= */}
         {toolsOpen && (
-          <aside className="absolute left-16 sm:left-18 top-0 bottom-0 w-80 bg-white/95 backdrop-blur-md border-r border-gray-200 z-30 flex flex-col shadow-2xl animate-fade-in">
+          <aside className="absolute left-14 sm:left-16 top-0 bottom-0 w-[82vw] max-w-[20rem] sm:w-80 bg-white/95 backdrop-blur-md border-r border-gray-200 z-30 flex flex-col shadow-2xl animate-fade-in">
             <div className="p-4 border-b border-gray-100 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Zap size={17} className="text-[#7c3aed]" />
@@ -894,12 +894,12 @@ export default function Chat() {
             /* ================================================================= */
             /* INITIAL STATE: Reference Mockup with Voice Message Recording      */
             /* ================================================================= */
-            <div className="flex-1 flex flex-col items-center justify-center p-6 max-w-4xl mx-auto w-full animate-fade-in gap-12">
+            <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 max-w-4xl mx-auto w-full animate-fade-in gap-8 sm:gap-12">
               <div className="text-center">
-                <h1 className="font-display font-bold text-brand-ink-900 text-4xl sm:text-5xl mb-2">
+                <h1 className="font-display font-bold text-brand-ink-900 text-3xl sm:text-5xl mb-2">
                   hello {profile?.name?.split(' ')[0] || user?.name?.split(' ')[0] || 'User'}
                 </h1>
-                <h2 className="font-display font-bold text-brand-blue-400 text-3xl sm:text-4xl">
+                <h2 className="font-display font-bold text-brand-blue-400 text-2xl sm:text-4xl">
                   how can i help you Today
                 </h2>
               </div>
@@ -951,7 +951,7 @@ export default function Chat() {
                   />
 
                   {/* Bottom Action Row inside Card */}
-                  <div className="flex items-center justify-between mt-8">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mt-6 sm:mt-8">
                     {/* Left Actions: Plus (+) for templates */}
                     <div className="flex items-center gap-1">
                       <div className="relative" ref={plusMenuRef}>
@@ -966,7 +966,7 @@ export default function Chat() {
 
                         {/* Quick Dropdown on Plus (+) */}
                         {plusMenuOpen && (
-                          <div className="absolute left-0 bottom-12 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-40 animate-fade-in text-xs">
+                          <div className="absolute left-0 bottom-12 w-[80vw] max-w-[16rem] sm:w-64 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-40 animate-fade-in text-xs">
                             <p className="px-3 py-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-wider">
                               Quick Prompts
                             </p>
@@ -989,7 +989,7 @@ export default function Chat() {
                     </div>
 
                     {/* Right Actions: Voice Record Button + Circular Send Button */}
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center justify-end gap-2">
                       {/* Microphone Voice Message Button */}
                       <button
                         type="button"
@@ -1208,14 +1208,14 @@ export default function Chat() {
                   )}
 
                   <div
-                    className={`rounded-2xl border bg-[#faf9fe]/70 focus-within:bg-white p-2.5 sm:p-3 transition-all duration-150 flex items-end gap-2 shadow-xs ${
+                    className={`rounded-2xl border bg-[#faf9fe]/70 focus-within:bg-white p-2 sm:p-3 transition-all duration-150 flex items-end gap-1.5 sm:gap-2 shadow-xs ${
                       isListening
                         ? 'border-rose-300 ring-3 ring-rose-100'
                         : 'assistant-card-border focus-within:border-[#a855f7] focus-within:ring-3 focus-within:ring-purple-100'
                     }`}
                   >
                     {/* Plus Icon (+) for Quick Actions */}
-                    <div className="relative" ref={plusMenuRef}>
+                    <div className="relative shrink-0" ref={plusMenuRef}>
                       <button
                         type="button"
                         onClick={() => setPlusMenuOpen((prev) => !prev)}
@@ -1226,7 +1226,7 @@ export default function Chat() {
                       </button>
 
                       {plusMenuOpen && (
-                        <div className="absolute left-0 bottom-12 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-40 animate-fade-in text-xs">
+                        <div className="absolute left-0 bottom-12 w-[80vw] max-w-[16rem] sm:w-64 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-40 animate-fade-in text-xs">
                           <p className="px-3 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">
                             Templates &amp; Modes
                           </p>

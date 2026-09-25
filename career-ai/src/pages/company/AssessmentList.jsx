@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ClipboardList, Clock, Plus } from 'lucide-react';
+import { ClipboardList, Clock, Plus, Trash2 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
 import CompanyLayout from '../../components/layout/CompanyLayout';
@@ -14,15 +14,10 @@ export default function AssessmentList() {
   
   const [loading, setLoading] = useState(true);
   const [assessments, setAssessments] = useState([]);
+  const [deletingId, setDeletingId] = useState(null);
+  const [assessmentToDelete, setAssessmentToDelete] = useState(null);
 
-  useEffect(() => {
-    if (profile?.id) {
-      loadAssessments();
-    }
-  }, [profile]);
-
-  const loadAssessments = async () => {
-    setLoading(true);
+  const loadAssessments = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('company_assessments')
@@ -36,6 +31,35 @@ export default function AssessmentList() {
       console.error('Error loading assessments:', error);
     } finally {
       setLoading(false);
+    }
+  }, [profile]);
+
+  useEffect(() => {
+    if (profile?.id) {
+      queueMicrotask(loadAssessments);
+    }
+  }, [profile, loadAssessments]);
+
+  const deleteAssessment = async () => {
+    const assessment = assessmentToDelete;
+    if (!assessment) return;
+
+    setAssessmentToDelete(null);
+    setDeletingId(assessment.id);
+    try {
+      const { error } = await supabase
+        .from('company_assessments')
+        .delete()
+        .eq('id', assessment.id)
+        .eq('company_id', profile.id);
+
+      if (error) throw error;
+      setAssessments(prev => prev.filter(item => item.id !== assessment.id));
+    } catch (error) {
+      console.error('Error deleting assessment:', error);
+      window.alert('Unable to delete this assessment. Please try again.');
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -85,15 +109,61 @@ export default function AssessmentList() {
                 <span className="text-xs font-medium text-brand-ink-600">
                   {assessment.status === 'Active' ? 'Accepting candidates' : 'Setup pending'}
                 </span>
-                <button 
-                  className="text-sm font-semibold text-brand-blue-600 hover:text-brand-blue-800"
-                  onClick={() => navigate(assessment.status === 'Draft' ? `/company-assessments/${assessment.id}/build` : `/company-candidates`)}
-                >
-                  Manage
-                </button>
+                <div className="flex items-center gap-3">
+                  <button 
+                    className="text-sm font-semibold text-brand-blue-600 hover:text-brand-blue-800"
+                    onClick={() => navigate(assessment.status === 'Draft' ? `/company-assessments/${assessment.id}/build` : `/company-candidates`)}
+                  >
+                    Manage
+                  </button>
+                  <button
+                    type="button"
+                    className="text-brand-ink-400 hover:text-red-600 disabled:opacity-50"
+                    onClick={() => setAssessmentToDelete(assessment)}
+                    disabled={deletingId === assessment.id}
+                    aria-label={`Delete ${assessment.title}`}
+                    title="Delete assessment"
+                  >
+                    <Trash2 size={17} />
+                  </button>
+                </div>
               </div>
             </Card>
           ))}
+
+          {assessmentToDelete && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-ink-900/40 px-4" role="presentation">
+              <div
+                className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="delete-assessment-title"
+              >
+                <h3 id="delete-assessment-title" className="text-lg font-bold text-brand-ink-900">
+                  Reminder
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-brand-ink-600">
+                  Delete &quot;{assessmentToDelete.title}&quot;? This will also remove its questions, candidate records, and results.
+                </p>
+                <div className="mt-6 flex justify-end gap-3">
+                  <button
+                    type="button"
+                    className="rounded-lg border border-brand-ink-200 px-4 py-2 text-sm font-semibold text-brand-ink-700 hover:bg-brand-ink-50"
+                    onClick={() => setAssessmentToDelete(null)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700"
+                    onClick={deleteAssessment}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         <Card className="p-8 text-center border-dashed border-2 border-brand-ink-200 bg-brand-ink-50/50">

@@ -10,7 +10,6 @@ import {
   Briefcase,
   Menu,
   X,
-  Bell,
   LogOut,
 } from 'lucide-react';
 import { currentUser } from '../../data/mockData';
@@ -102,10 +101,6 @@ export default function DashboardLayout({ children, title, subtitle }) {
             </div>
 
             <div className="flex items-center gap-4 shrink-0">
-              <button className="relative text-brand-ink-500 hover:text-brand-blue-600 transition-colors" aria-label="Notifications">
-                <Bell size={20} />
-                <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-brand-purple-500" />
-              </button>
               <Link to="/profile" className="flex items-center gap-2.5">
                 <div className="h-9 w-9 rounded-full bg-gradient-to-br from-brand-blue-500 to-brand-purple-500 flex items-center justify-center text-white text-sm font-semibold">
                   {currentUser.avatarInitials}

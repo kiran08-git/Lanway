@@ -12,7 +12,6 @@ import {
   Target,
   Menu,
   X,
-  Bell,
   LogOut,
   ChevronDown,
   Bot,
@@ -127,11 +126,6 @@ export default function DashboardLayout({ children, title, subtitle }) {
             </div>
 
             <div className="flex items-center gap-5 shrink-0">
-              <button className="relative text-brand-ink-500 hover:text-brand-blue-600 transition-colors" aria-label="Notifications">
-                <Bell size={20} />
-                <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-brand-blue-500 border-2 border-white" />
-              </button>
-              
               <Link to="/profile" className="flex items-center gap-3 pl-2">
                 <div className="h-9 w-9 rounded-full bg-brand-blue-600 flex items-center justify-center text-white text-sm font-semibold">
                   {avatarInitials}

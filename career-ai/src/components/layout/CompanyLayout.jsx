@@ -7,7 +7,6 @@ import {
   Settings,
   Menu,
   X,
-  Bell,
   LogOut,
   ChevronDown,
   Building,
@@ -18,7 +17,7 @@ const NAV_ITEMS = [
   { label: 'Dashboard', to: '/company-dashboard', icon: LayoutDashboard },
   { label: 'Assessments', to: '/company-assessments', icon: ClipboardList },
   { label: 'Candidates', to: '/company-candidates', icon: Users },
-  { label: 'Settings', to: '/company-settings', icon: Settings },
+  { label: 'Company Profile', to: '/company-settings', icon: Building },
 ];
 
 export default function CompanyLayout({ children, title, subtitle }) {
@@ -121,11 +120,6 @@ export default function CompanyLayout({ children, title, subtitle }) {
             </div>
 
             <div className="flex items-center gap-5 shrink-0">
-              <button className="relative text-brand-ink-500 hover:text-brand-blue-600 transition-colors bg-brand-ink-50 p-2 rounded-full" aria-label="Notifications">
-                <Bell size={20} />
-                <span className="absolute top-0 right-0 h-2.5 w-2.5 rounded-full bg-red-500 border-2 border-brand-ink-50" />
-              </button>
-              
               <Link to="/company-settings" className="flex items-center gap-3 pl-2">
                 <div className="h-10 w-10 rounded-full bg-brand-blue-600 flex items-center justify-center text-white text-sm font-bold shadow-md ring-2 ring-brand-blue-100">
                   {avatarInitials}

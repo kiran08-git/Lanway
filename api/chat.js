@@ -1,4 +1,5 @@
 import { generateChatResponse } from '../career-ai/src/server/geminiService.js';
+import { INITIAL_COURSES } from '../career-ai/src/data/coursesData.js';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -25,18 +26,32 @@ export default async function handler(req, res) {
     }
 
     const apiKey = process.env.GEMINI_API_KEY;
+
+    if (!apiKey) {
+      console.error('[Vercel API /api/chat] GEMINI_API_KEY is not set in Vercel environment variables!');
+    }
+
     const studentContext = {
       profile: context.profile || {},
       assessment: context.assessment || {},
       recommendations: context.recommendations || {},
     };
 
+    // Pass courses context to match local dev server behavior
+    const coursesContext = (INITIAL_COURSES || []).slice(0, 25).map((c) => ({
+      category: c.category,
+      title: c.title,
+      channel: c.channel,
+      level: c.level,
+      topics: c.topics,
+    }));
+
     const result = await generateChatResponse(
       {
-        message,
+        message: message.trim(),
         history,
         studentContext,
-        coursesContext: [],
+        coursesContext,
       },
       apiKey
     );

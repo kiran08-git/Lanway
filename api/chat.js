@@ -1,5 +1,4 @@
 import { generateChatResponse } from '../career-ai/src/server/geminiService.js';
-import { INITIAL_COURSES } from '../career-ai/src/data/coursesData.js';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -28,7 +27,12 @@ export default async function handler(req, res) {
     const apiKey = process.env.GEMINI_API_KEY;
 
     if (!apiKey) {
-      console.error('[Vercel API /api/chat] GEMINI_API_KEY is not set in Vercel environment variables!');
+      console.error('[Vercel API /api/chat] CRITICAL: GEMINI_API_KEY env var is not set!');
+      res.status(500).json({
+        success: false,
+        error: 'Server misconfiguration: API key not set. Please contact support.',
+      });
+      return;
     }
 
     const studentContext = {
@@ -37,24 +41,25 @@ export default async function handler(req, res) {
       recommendations: context.recommendations || {},
     };
 
-    // Pass courses context to match local dev server behavior
-    const coursesContext = (INITIAL_COURSES || []).slice(0, 25).map((c) => ({
-      category: c.category,
-      title: c.title,
-      channel: c.channel,
-      level: c.level,
-      topics: c.topics,
-    }));
-
     const result = await generateChatResponse(
       {
         message: message.trim(),
         history,
         studentContext,
-        coursesContext,
+        coursesContext: [],
       },
       apiKey
     );
+
+    // If result came from fallback engine, return an error instead so client knows
+    if (result.model === 'fallback-engine') {
+      console.error('[Vercel API /api/chat] All Gemini models failed. Returning error to client.');
+      res.status(503).json({
+        success: false,
+        error: 'AI service is temporarily unavailable. Please try again in a moment.',
+      });
+      return;
+    }
 
     res.status(200).json({
       success: true,

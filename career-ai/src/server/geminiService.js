@@ -108,8 +108,8 @@ Respond ONLY with a valid JSON object matching this schema:
   }
 
   const models = [
-    'gemini-2.5-flash',
-    'gemini-2.5-flash-lite-preview-06-17',
+    'gemini-3.8-flash',
+    'gemini-3.8-flash-lite',
     'gemini-2.5-flash-preview-05-20',
     'gemini-1.5-flash',
   ];
@@ -323,8 +323,8 @@ Friendly, highly capable, encouraging, precise, and articulate. Answer promptly,
   }
 
   const models = [
-    'gemini-2.5-flash',
-    'gemini-2.5-flash-lite-preview-06-17',
+    'gemini-3.8-flash',
+    'gemini-3.8-flash-lite',
     'gemini-2.5-flash-preview-05-20',
     'gemini-1.5-flash',
   ];
